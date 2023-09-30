@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Methesda</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Kanit", sans-serif}
+.w3-bar,h1,button {font-family: "Kanit", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="w3-container w3-black w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">Help The Needy!</h1>
+</header>
+
+<!-- Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container w3-grey">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Help The Needy!</h1>
+      <h5 class="w3-padding-32">This project aims at giving food to the needy and impoverished. Help us reach our goal by donating food (cash and kind accepted) and feeding a family or two. The money or food you give us will be sent to people starving all over the world. By donating, you send food to people without access to food in places with food insecurity. The aim of the project is to feed 100 families across the globe. Let us make the world a better place!
+    </h5>
+    </div>
+
+  </div>
+</div>
+
+<div class="w3-row-padding w3-blue w3-padding-64 w3-container">
+    <div class="w3-content">
+      <div class="w3-third w3-center">
+      </div>
+  
+      <div class="w3-twothird">
+        <h1>Why Us?</h1>
+        <h5 class="w3-padding-32">What would we feel like if we could not feel our children? How depressing and stressful would our lives be? We want to make our world void of that. People all around the world are desperate for even a single ounce of food. Your donation matters! We appreciate any food in any amounts, help us inch ourselves to a world free of hunger and achieve UNSDG’s goal 2, Zero Hunger. </h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-row-padding w3-padding-64 w3-light-blue w3-container">
+    <div class="w3-content">
+      <div class="w3-third w3-center">
+      </div>
+  
+      <div class="w3-twothird">
+        <h1>Get Started</h1>  
+        <h5 class="w3-padding-32">Click the respective buttons to access the donor and receiver portals, making a difference in the fight against hunger today. </h5>
+        <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top" onclick="location.href='{{url_for('donors')}}'">Donor</button>
+        <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top" onclick="location.href='{{url_for('receptionists')}}'">Receiver</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>

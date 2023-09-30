@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Food donations</title>
+    <link rel="icon" href="C:\Users\aashe\OneDrive\Desktop\ProgressioProj\icon.jpg" type="image/jpeg">
+</head>
+<body>
+
+    <form action="donor_create" method="POST">
+        <h1><a href="/">Donations</a></h1>
+        <a class="button" href="{{url_for('donor_create')}}">
+            Make a food donation
+        </a>
+    </form>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Food Type</th>
+            <th>Quantity</th>
+            <th>Expiry Date</th>
+            <th>Location</th>
+            <th>Contact</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for donor in donors %}
+        <tr>
+            <!-- <td><i class="bi bi-person"></i></td> -->
+            <td>
+                <a href="{{url_for('donor', id=donor.id)}}">
+                {{donor["name"]}}
+                </a>
+            </td>
+            <td>
+                {{donor["food_type"]}}
+            </td>
+            <td>
+                {{donor["quantity"]}}
+            </td>
+            <td>
+                {{donor["expiry_date"]}}
+            </td>
+            <td>
+                {{donor["location"]}}
+            </td>
+            <td>
+                {{donor["contact"]}}
+            </td>
+            <td>
+                <a href="{{url_for('donor_edit', id=donor.id)}}">
+                edit
+                </a>
+            </td>
+            <td>
+                <a href="#" class="delete">delete</a>
+                <a href="/donors/delete?id={{donor["id"]}}" class="confirm" style="display:none;"><i class="bi bi-check"></i></a>
+                <a href="#" class="cancel" style="display:none;"><i class="bi bi-x"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% if not donors %}
+        <tr>
+            <td colspan="8">No result.</td>
+        </tr>
+        {% endif %}
+    </table>
+
+    <script>
+        $(function(){
+            $('.delete').click(function(){
+                $(this).hide();
+                $(this).siblings('.confirm, .cancel').show();
+            })
+            $('.cancel').click(function(){
+                $(this).hide();
+                $(this).siblings('.confirm').hide();
+                $(this).siblings('.delete').show();
+            })
+        })
+    </script>
+</body>
+</html>

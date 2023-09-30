@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Donation</title>
+</head>
+<body>
+
+    <h1>Donation</h1>
+
+    <h3>Name</h3>
+    <p>{{donor["name"]}}</p>
+    <h3>Food Type</h3>
+    <p>{{donor["food_type"]}}</p>
+    <h3>Quantity</h3>
+    <p>{{donor["quantity"]}}</p>
+    <h3>Expiry Date</h3>
+    <p>{{donor["expiry_date"]}}</p>
+    <h3>Location</h3>
+    <p>{{donor["location"]}}</p>
+    <h3>Contact</h3>
+    <p><a href="mailto:"{{donor["contact"]}}>{{donor["contact"]}}</a></p>
+    <a href="/receptionists" class="button">Ok</a>    
+    <button class="claim-button" data-donation-id="{{ donor['id'] }}">Claim Food</button>
+
+</body>
+</html>

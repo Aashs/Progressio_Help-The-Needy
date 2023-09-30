@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Food Donations</title>
+</head>
+<body>
+
+    <form action="/receptionists/search" method="GET">
+        <h1><a href="/">Available Donations</a></h1>
+        <input type="text" name="location" placeholder="Location" value="{{location}}">
+        <input class="button" type="submit" value="Search">
+    </form>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Food Type</th>
+            <th>Quantity</th>
+            <th>Expiry Date</th>
+            <th>Location</th>
+            <th>Contact</th>
+            <th>Food Availability</th>
+        </tr>
+        {% for donor in donors %}
+        <tr>
+            <td>
+                <a href="{{url_for('receptionist_view', id=donor.id)}}">
+                {{donor["name"]}}
+                </a>
+            </td>
+            <td>
+                {{donor["food_type"]}}
+            </td>
+            <td>
+                {{donor["quantity"]}}
+            </td>
+            <td>
+                {{donor["expiry_date"]}}
+            </td>
+            <td>
+                {{donor["location"]}}
+            </td>
+            <td>
+                <a href="mailto:{{donor["contact"]}}">{{donor["contact"]}}</a>
+            </td>
+            <!-- Separate column for Food Availability -->
+            <td>
+                {% if not donor.get("claimed") %}
+                <button class="claim-button" data-donation-id="{{ donor['id'] }}">Claim Food</button>
+                {% else %}
+                <span>Claimed</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        {% if not donors %}
+        <tr>
+            <td colspan="7">No result.</td>
+        </tr>
+        {% endif %}
+    </table>
+
+    <script>
+        $(function () {
+            $('.claim-button').click(function () {
+                var donationId = $(this).data('donation-id');
+                $.ajax({
+                    type: 'POST',
+                    url: '/receptionists/claim/' + donationId,
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Food claimed successfully!');
+                            location.reload(); // Refresh the page after claiming
+                        } else {
+                            alert('Failed to claim food. Please try again.');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

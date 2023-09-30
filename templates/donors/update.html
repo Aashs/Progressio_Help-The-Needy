@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Edit a donation</title>
+</head>
+<body>
+
+    <h1>Edit a donation</h1>
+    <form action="/donors/edit/{{donor_id}}" method="POST">
+        <input class="form-control" type="text" name="name" placeholder="Name" value="{{donor["name"]}}">
+        <input class="form-control" type="text" name="food_type" placeholder="Food Type" value="{{donor["food_type"]}}">
+        <input class="form-control" type="number" name="quantity" placeholder="Quantity" value="{{donor["quantity"]}}">
+        <input class="form-control" type="date" name="expiry_date" placeholder="Expiry Date" value="{{donor["expiry_date"]}}">
+        <input class="form-control" type="text" name="location" placeholder="Location" value="{{donor["location"]}}">
+        <input class="form-control" type="text" name="contact" placeholder="Contact Information" value="{{donor["contact"]}}">
+        <input type="submit" value="Update">
+    </form>
+
+</body>
+</html>
